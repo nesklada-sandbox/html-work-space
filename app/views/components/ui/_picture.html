@@ -1,0 +1,8 @@
+<picture @@if(context.pictureClass){class="@@pictureClass"}>
+    <source srcset="./avif/@@img.avif" type="image/avif">
+    <source srcset="./webp/@@img.webp" type="image/webp">
+    <img @@if(context.imgClass){class="@@imgClass"} 
+        src="./img/@@img.@@ext" 
+        @@if(context.alt){alt="@@alt"} 
+        @@if(!context.disableLazy){loading="lazy"}>
+</picture>

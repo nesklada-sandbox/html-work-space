@@ -1,0 +1,34 @@
+﻿//Bootstrap:
+@import "../../node_modules/bootstrap-scss/bootstrap-reboot.scss";
+@import "../../node_modules/bootstrap-scss/bootstrap-grid.scss";
+
+
+//variables:
+@import "settings/brand-color";
+@import "settings/grid-variable";
+@import "settings/mixins";
+
+//UI:
+/* purgecss start ignore */
+@import "UI/btn";
+@import "UI/form/form-group";
+@import "UI/form/form-control";
+@import "UI/form/form-validation";
+@import "UI/form/control-label";
+/* purgecss end ignore */
+@import "UI/typography";
+@import "UI/brand-logo";
+@import "UI/list";
+
+//Components:
+@import "components/_grid";
+@import "components/_general";
+@import "components/_wrapper-page";
+@import "components/_header-page";
+@import "components/_footer-page";
+@import "components/article";
+
+@import "pages/content-page";
+
+/* purgecss start ignore */
+/* purgecss end ignore */

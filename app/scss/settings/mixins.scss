@@ -1,0 +1,40 @@
+﻿@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}  
+}
+
+@function stroke($stroke, $color) {
+    $shadow: ();
+    $from: $stroke*-1;
+    @for $i from $from through $stroke {
+     @for $j from $from through $stroke {
+        $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+      }
+    }
+    @return $shadow;
+  }
+  
+@mixin stroke($stroke, $color, $extends:"") {
+    text-shadow: stroke($stroke, $color);
+  
+    @if $extends != "" {
+      text-shadow: stroke($stroke, $color), $extends;
+    }
+}
+
+@mixin bgImage($filename, $fileExt) {
+    .jpng & { 
+        background-image: url(../../img/#{$filename}.#{$fileExt}); 
+    }
+
+    .webp & { 
+        background-image: url(../../webp/#{$filename}.webp); 
+    }
+
+    .avif & { 
+        background-image: url(../../avif/#{$filename}.avif); 
+    }
+}
+
