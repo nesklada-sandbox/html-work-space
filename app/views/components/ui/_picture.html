@@ -2,7 +2,7 @@
     <source srcset="./avif/@@img.avif" type="image/avif">
     <source srcset="./webp/@@img.webp" type="image/webp">
     <img @@if(context.imgClass){class="@@imgClass"} 
-        src="./img/@@img.@@ext" 
+        src="./img/@@img.@@if(context.ext){@@ext}@@if(!context.ext){jpg}" 
         @@if(context.alt){alt="@@alt"} 
         @@if(!context.disableLazy){loading="lazy"}>
 </picture>
