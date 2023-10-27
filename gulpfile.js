@@ -1,7 +1,7 @@
 "use strict";
 
 const { src, dest, watch, series } = require("gulp");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require("sass"));
 const browserSync = require("browser-sync");
 const uglify = require('gulp-uglify-es').default;
 const cleanCSS = require("gulp-clean-css");
@@ -86,7 +86,7 @@ const style_dev = (done) => {
     src(path.app.scss)
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: "compact" }).on("error", notify.onError()))
+        .pipe(sass().on("error", notify.onError()))
         .pipe(sourcemaps.write("."))
         .pipe(dest(path.app.style))
         .pipe(browserSync.reload({ stream: true }));
@@ -179,7 +179,7 @@ const html_prod = (done) => {
 
 const style_prod = (done) => {
     src(path.app.scss)
-        .pipe(sass({ outputStyle: "compact" }).on("error", sass.logError))
+        .pipe(sass().on("error", sass.logError))
         .pipe(
             autoprefixer(["last 10 versions", "> 1%", "ie 11"], {
                 cascade: true,
@@ -238,16 +238,18 @@ const js_prod = (done) => {
 
 const webpImages = () => {
     return src([`./img/**/**.{jpg,jpeg,png}`])
-            .pipe(webp({
-                quality: 90
-            }))
-            .pipe(dest('./webp'))
+        .pipe(webp({
+            quality: 85
+        }))
+        .pipe(dest('./webp'))
 };
 
 const avifImages = () => {
     return src([`./img/**/**.{jpg,jpeg,png}`])
-      .pipe(avif())
-      .pipe(dest('./avif'))
+        .pipe(avif({
+            quality: 85
+        }))
+        .pipe(dest('./avif'))
 };
 
 const clean_webp = (done) => {
