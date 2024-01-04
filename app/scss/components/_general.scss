@@ -15,9 +15,8 @@ a {
     color: $color;
     text-decoration: underline;
 
-    &:hover{
+    &:hover {
         color: darken($color, 10%);
-        text-decoration: none;
     }
 }
 
