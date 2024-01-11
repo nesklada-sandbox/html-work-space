@@ -155,8 +155,8 @@ const clean_dist = (done) => {
     done();
 };
 
-const html_prod = (done) => {
-    src(path.app.htmlViews)
+const html_prod = () => {
+    return src(path.app.htmlViews)
         .pipe(
             fileinclude({
                 prefix: "@@",
@@ -173,8 +173,6 @@ const html_prod = (done) => {
         )
         .pipe(version(versionConfig))
         .pipe(dest("./"));
-
-    done();
 };
 
 const style_prod = (done) => {
