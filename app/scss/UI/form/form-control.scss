@@ -1,0 +1,15 @@
+.form-control {
+    @include placeholder {
+        opacity: 0.75;
+    }
+
+    &:focus {
+        @include placeholder {
+            opacity: 0.35;
+        }
+    }
+
+    &.error {
+        border-color: $color-danger;
+    }
+}

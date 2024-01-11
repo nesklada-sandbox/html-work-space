@@ -1,37 +1,37 @@
+const error = 'error';
+const hasError = 'has-' + error;
+const hasValid = 'has-valid';
+const formGroup = '.form-group';
+
 export default function () {
     jQuery.validator.setDefaults({
         errorElement: "label",
-        errorClass: "error",
+        errorClass: error,
         focusInvalid: false,
 
         errorPlacement: function (error, element) {
-            $(element).closest(".form-group").append(error);
+            $(element).closest(formGroup).append(error);
         },
 
         highlight: function (element, errorClass, validClass) {
-            let fieldWrap = $(element).closest(".form-group");
+            const $elem = $(element);
 
-            fieldWrap.addClass("has-error").removeClass("has-valid");
-            $(element).addClass("error");
+            $elem.closest(formGroup).addClass(hasError).removeClass(hasValid);
+            $elem.addClass(error);
         },
 
         unhighlight: function (element, errorClass, validClass) {
-            let fieldWrap = $(element).closest(".form-group");
+            const $elem = $(element);
 
-            fieldWrap.removeClass("has-error").addClass("has-valid");
-            $(element).removeClass("error");
+            $elem.closest(formGroup).removeClass(hasError).addClass(hasValid);
+            $elem.removeClass(error);
         },
 
         rules: {
-			email: {
-				required: true,
-				email: true
-			},
-
-			contact_message: {
-				required: true,
-				minlength: 10
-			},
-        }
+            sodIdTxt: {
+                required: true,
+                minlength: 10
+            },
+        },
     });
 }

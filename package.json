@@ -20,6 +20,7 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-file-include": "^2.1.1",
     "gulp-htmlmin": "^5.0.1",
+    "gulp-javascript-obfuscator": "^1.1.6",
     "gulp-notify": "^4.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-purgecss": "^1.2.0",

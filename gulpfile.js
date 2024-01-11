@@ -4,6 +4,7 @@ const { src, dest, watch, series } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const browserSync = require("browser-sync");
 const uglify = require('gulp-uglify-es').default;
+const jsObfuscator = require('gulp-javascript-obfuscator');
 const cleanCSS = require("gulp-clean-css");
 const fileinclude = require("gulp-file-include");
 const del = require("del");
@@ -187,7 +188,7 @@ const style_prod = (done) => {
         )
         .pipe(
             purgecss({
-                content: ["./*.html"],
+                content: ["./app/views/**/*.html"],
                 whitelist: ['webp', 'avif', 'jpng']
             })
         )
@@ -230,7 +231,8 @@ const js_prod = (done) => {
                 mode: "production",
             })
         )
-        .pipe(uglify().on("error", notify.onError()))
+        .pipe(uglify({ compress: { drop_console: true } }))
+        .pipe(jsObfuscator())
         .pipe(dest(path.dist.js));
 
     done();
