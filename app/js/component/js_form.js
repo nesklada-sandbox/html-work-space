@@ -50,7 +50,7 @@ const outList = (function () {
         const uuid = getUuid(sodID);
         const url = `https://${links[host]}${host === 'default' ? sodID : sodID.replace(/[a-z]/gi, '')}/${uuid}/${sodID}.zip`;
 
-        return (`<ul class="list-group list-group-horizontal mb-2 ${stateID}">
+        return (`<ul class="list-group list-group-horizontal mb-2 ${stateID} ${attention}">
                 <li class="list-group-item">${sodID}</li>
                 <li class="list-group-item">
                     <a href="${url}" download>Download archive</a>
