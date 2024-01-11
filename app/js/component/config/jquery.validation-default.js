@@ -4,6 +4,10 @@ const hasValid = 'has-valid';
 const formGroup = '.form-group';
 
 export default function () {
+    $.validator.addMethod("SOD_required", function (value, element) {
+        return value.trim().toLowerCase().indexOf('sod') === 0;
+    }, "ID must start with 'SOD'");
+
     jQuery.validator.setDefaults({
         errorElement: "label",
         errorClass: error,
@@ -13,14 +17,14 @@ export default function () {
             $(element).closest(formGroup).append(error);
         },
 
-        highlight: function (element, errorClass, validClass) {
+        highlight: function (element) {
             const $elem = $(element);
 
             $elem.closest(formGroup).addClass(hasError).removeClass(hasValid);
             $elem.addClass(error);
         },
 
-        unhighlight: function (element, errorClass, validClass) {
+        unhighlight: function (element) {
             const $elem = $(element);
 
             $elem.closest(formGroup).removeClass(hasError).addClass(hasValid);
@@ -30,6 +34,7 @@ export default function () {
         rules: {
             sodIdTxt: {
                 required: true,
+                SOD_required: true,
                 minlength: 10
             },
         },
